@@ -1,8 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Header from './components/Header';
+import Menu from './components/Menu';
+import Footer from './components/Footer';
+
+function App() {
+  const currentHour = new Date().getHours();
+  const openHour = 10;
+  const closeHour = 22;
+  const isOpen = currentHour >= openHour && currentHour < closeHour;
+
+  return (
+    <div className="container">
+      <Header isOpen={isOpen} />
+      <Menu />
+      <Footer isOpen={isOpen} />
+    </div>
+  );
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,7 +27,4 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export default App;
